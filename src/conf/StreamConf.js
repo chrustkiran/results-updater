@@ -1,6 +1,6 @@
 export const streams = [
     {
-        value: 'CombinedMathematics',
+        value: 'Combined_Mathematics',
         label: 'Combined Mathematics',
         children: [
             {
@@ -8,7 +8,7 @@ export const streams = [
                 label: 'Normal',
             },
             {
-                value: 'InformationTechnology',
+                value: 'Information_Technology',
                 label: 'Information Technology',
             }
         ],
@@ -22,7 +22,7 @@ export const streams = [
                 label: 'Normal',
             },
             {
-                value: 'InformationTechnology',
+                value: 'Information_Technology',
                 label: 'Information Technology',
             }
         ],
@@ -36,11 +36,11 @@ export const streams = [
         label: 'Arts'
     },
     {
-        value: 'EngineeringTechnology',
+        value: 'Engineering_Technology',
         label: 'Engineering Technology'
     },
     {
-        value: 'BioTechnology',
+        value: 'Bio_Technology',
         label: 'Bio Technology'
     },
 ]
@@ -48,8 +48,15 @@ export const streams = [
 
 
 export const subjects = {
-    CombinedMathematics_Normal: ['Maths', 'Physics', 'Chemistry'],
-    CombinedMathematics_InformationTechnology: ['Maths', 'Physics', 'Information Technology'],
+    Combined_Mathematics_Normal: ['Maths', 'Physics', 'Chemistry'],
+    Combined_Mathematics_InformationTechnology: ['Maths', 'Physics', 'Information Technology'],
     Biology_Normal: ['Biology', 'Physics', 'Chemistry'],
-    Biology_InformationTechnology: ['Biology', 'Information Technology', 'Chemistry']
-}
+    Biology_Information_Technology: ['Biology', 'Information Technology', 'Chemistry'],
+    Commerce: ['Commerce', 'Economics', 'Accounts'],
+    Arts: ['Tamil', 'Political Science', 'Hindu culture'],
+    Engineering_Technology: ['A', 'B', 'C'],
+    Bio_Technology: ['A', 'B', 'C']
+};
+
+
+export const results = ['A', 'B', 'C', 'S', 'F'];
