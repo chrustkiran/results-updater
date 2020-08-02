@@ -5,7 +5,7 @@ export default class ResultViewComponent extends React.Component {
     render() {
         return (
             <div>
-                Result view component
+                Yet to be completed!
             </div>
         )
     }
