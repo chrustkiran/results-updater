@@ -49,7 +49,7 @@ export const streams = [
 
 export const subjects = {
     Combined_Mathematics_Normal: ['Maths', 'Physics', 'Chemistry'],
-    Combined_Mathematics_InformationTechnology: ['Maths', 'Physics', 'Information Technology'],
+    Combined_Mathematics_Information_Technology: ['Maths', 'Physics', 'Information Technology'],
     Biology_Normal: ['Biology', 'Physics', 'Chemistry'],
     Biology_Information_Technology: ['Biology', 'Information Technology', 'Chemistry'],
     Commerce: ['Commerce', 'Economics', 'Accounts'],
