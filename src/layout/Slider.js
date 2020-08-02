@@ -60,7 +60,6 @@ export default class Slider extends React.Component {
                     <Content style={{ margin: '0 16px' }}>
                         {this.contentLoader()}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>TDUSA</Footer>
                 </Layout>
             </Layout>
         );

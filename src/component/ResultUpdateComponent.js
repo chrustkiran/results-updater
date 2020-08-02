@@ -1,53 +1,54 @@
 import React from 'react';
-import {Button, Cascader, Form, Input,} from 'antd';
-import {streams, subjects} from "../conf/StreamConf";
+import {Button, Cascader, Form, Input, Tooltip, Select} from 'antd';
+import {results, streams, subjects} from "../conf/StreamConf";
+import {StoreService} from "../service/StoreService";
 
 
 export default class ResultUpdateComponent extends React.Component {
-
     state = {
-        stream: ''
+        streamId: ''
     };
 
+    objToBeSaved = {};
+    gradeObj = {};
+
     streamOnChange = (event) => {
-        this.setState({stream: event.join("_")});
+        this.gradeObj = {};
+        this.setState({streamId: event.join("_")});
+        this.objToBeSaved['Stream'] = event[0].replace('_', ' ');
     };
 
     constructSubjects = () => {
-        if (this.state.stream.length > 0) {
+        if (this.state.streamId.length > 0) {
             return (
-                subjects[this.state.stream].map(subject => {
+                subjects[this.state.streamId].map(subject => {
                     return (<Form.Item label={subject}>
-                        <Input/>
+                        <Select onChange={(value) => {this.gradeOnChange(subject, value)}}>
+                            {results.map(grade => {
+                               return (<Select.Option value={grade}>{grade}</Select.Option>)
+                            })}
+                        </Select>
                     </Form.Item>)
                 })
             )
         } else {
             return (<div></div>)
         }
-        /*  switch (this.state.stream) {
-              case 'CombinedMathematics_Normal':
-                  return (
-                      subjects.CombinedMathematics_Normal.map(subject => {
-                          <Form.Item label={subject}>
-                              <Input />
-                          </Form.Item>
-                      })
-                  )
-              case 'CombinedMathematics_InformationTechnology':
-                  return (
-                      subjects.CombinedMathematics_Normal.map(subject => {
-                          <Form.Item label={subject}>
-                              <Input />
-                          </Form.Item>
-                      })
-                  )
-              case 'Biology_Normal':
-                  return ()
-              case 'Biology_InformationTechnology':
-                  return ()
-          }*/
-    }
+    };
+
+    inputOnChange = (key, value) => {
+        this.objToBeSaved[key] = value;
+    };
+
+    gradeOnChange = (subject, grade) => {
+        this.gradeObj[subject] = grade;
+    };
+
+    onSaveClick = () => {
+        this.objToBeSaved['Results'] = this.gradeObj;
+        StoreService.saveObject(this.objToBeSaved);
+        window.location.reload(false);
+    };
 
     render() {
         return (
@@ -61,10 +62,16 @@ export default class ResultUpdateComponent extends React.Component {
                 size={12}
             >
                 <Form.Item label="Index Number">
-                    <Input/>
+                    <Tooltip
+                        trigger={['focus']}
+                        placement="topLeft"
+                        overlayClassName="numeric-input"
+                    >
+                    <Input onChange={(event)=>{this.inputOnChange('Index Number', event.target.value)}}/>
+                    </Tooltip>
                 </Form.Item>
                 <Form.Item label="Name">
-                    <Input/>
+                    <Input onChange={(event)=>{this.inputOnChange('Name', event.target.value)}}/>
                 </Form.Item>
                 <Form.Item label="Stream">
                     <Cascader onChange={this.streamOnChange}
@@ -73,13 +80,13 @@ export default class ResultUpdateComponent extends React.Component {
                 </Form.Item>
                 {this.constructSubjects()}
                 <Form.Item label="Rank">
-                    <Input/>
+                    <Input onChange={(event)=>{this.inputOnChange('Rank', event.target.value)}}/>
                 </Form.Item>
                 <Form.Item label="Z-Score">
-                    <Input/>
+                    <Input onChange={(event)=>{this.inputOnChange('Z-Score', event.target.value)}}/>
                 </Form.Item>
                 <Form.Item style={{marginLeft: '20%'}}>
-                    <Button type={"primary"}>Save</Button>
+                    <Button type={"primary"} onClick={this.onSaveClick}>Save</Button>
                 </Form.Item>
             </Form>
 
