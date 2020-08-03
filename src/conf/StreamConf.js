@@ -30,20 +30,8 @@ export const streams = [
     {
         value: 'Commerce',
         label: 'Commerce'
-    },
-    {
-        value: 'Arts',
-        label: 'Arts'
-    },
-    {
-        value: 'Engineering_Technology',
-        label: 'Engineering Technology'
-    },
-    {
-        value: 'Bio_Technology',
-        label: 'Bio Technology'
-    },
-]
+    }
+];
 
 
 
@@ -52,10 +40,7 @@ export const subjects = {
     Combined_Mathematics_Information_Technology: ['Maths', 'Physics', 'Information Technology'],
     Biology_Normal: ['Biology', 'Physics', 'Chemistry'],
     Biology_Information_Technology: ['Biology', 'Information Technology', 'Chemistry'],
-    Commerce: ['Commerce', 'Economics', 'Accounts'],
-    Arts: ['Tamil', 'Political Science', 'Hindu culture'],
-    Engineering_Technology: ['A', 'B', 'C'],
-    Bio_Technology: ['A', 'B', 'C']
+    Commerce: ['Commerce', 'Business Studies', 'Accounting']
 };
 
 

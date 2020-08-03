@@ -15,14 +15,22 @@ export const StoreService = {
         return db.ref('/2020').on('value', querySnapShot => {
             let data = querySnapShot.val() ? querySnapShot.val() : {};
             let results = {...data};
-            //resultView.setState({results: results});
-            //BLService.mapResultObjtoResultArray(this.dataSource, results);
             Object.keys(results).map(index => {
-                //const resultsStr = BLService.objToString(results[index].results);
-                //results[index].Results = resultsStr;
                 resultsArray.push(results[index]);
             });
             resultView.setState({results : resultsArray});
         });
+    },
+
+    loadSetting: (resultView) => {
+        const resultsArray = [];
+        return db.ref('/setting').on('value', querySnapShot => {
+            let setting = querySnapShot.val() ? querySnapShot.val() : {};
+            resultView.setState({...setting});
+        });
+    },
+
+    saveSetting: (checked) => {
+        db.ref('/setting/showResults').set(checked)
     }
 };
