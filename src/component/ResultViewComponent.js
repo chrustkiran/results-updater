@@ -1,18 +1,16 @@
 import React from "react";
-import {Table, Tag} from "antd";
+import {Table, Tag, Divider, Switch, Modal} from "antd";
 import {StoreService} from "../service/StoreService";
-import {db} from "../conf/FirebaseConfig";
-import {BLService} from "../service/BLService";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
+const { confirm } = Modal;
 
 export default class ResultViewComponent extends React.Component {
 
     state = {
-        results : []
+        results : [],
+        showResults : true
     };
-
-     dataSource = [];
-
      columns = [
         {
             title: 'Index Number',
@@ -59,14 +57,37 @@ export default class ResultViewComponent extends React.Component {
 
      componentDidMount() {
          StoreService.loadObject(this);
+         StoreService.loadSetting(this);
      }
+
+    onShowSwitchChange = (checked) => {
+        this.showResultConfirm(checked);
+    };
+
+     showResultConfirm = (checked) => {
+         const feature = checked ? 'enable' : 'disable';
+        confirm({
+            title: 'Are You Sure ?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'This will ' + feature + ' showing results on TDUSA page',
+            onOk() {
+                StoreService.saveSetting(checked);
+            }
+        });
+    };
 
 
     render() {
-         console.log(this.state.results);
         return (
             <div>
+                <div style={{marginTop : 10}}>
+                    Show Results : &nbsp; <Switch checked={this.state.showResults} checkedChildren="enabled" unCheckedChildren="disabled" onChange={this.onShowSwitchChange} />
+                </div>
+                <Divider/>
+            <div>
                 <Table dataSource={this.state.results} columns={this.columns} />;
+            </div>
+
             </div>
         )
     }
