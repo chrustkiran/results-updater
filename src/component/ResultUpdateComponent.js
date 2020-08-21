@@ -73,6 +73,9 @@ export default class ResultUpdateComponent extends React.Component {
                 <Form.Item label="Name">
                     <Input onChange={(event)=>{this.inputOnChange('Name', event.target.value)}}/>
                 </Form.Item>
+                <Form.Item label="NIC">
+                    <Input onChange={(event)=>{this.inputOnChange('nic', event.target.value)}}/>
+                </Form.Item>
                 <Form.Item label="Stream">
                     <Cascader onChange={this.streamOnChange}
                               options={streams}
