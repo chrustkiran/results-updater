@@ -28,8 +28,8 @@ export default class ResultViewComponent extends React.Component {
             key: '3',
         },
         {
-            title: 'NIC',
-            dataIndex: 'nic',
+            title: 'School',
+            dataIndex: 'school',
             key: '4',
         },
         {
